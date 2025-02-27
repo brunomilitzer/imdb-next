@@ -8,13 +8,17 @@ export default async function Home( { searchParams } ) {
         headers: {
             accept: 'application/json',
             Authorization: `Bearer ${ ACCESS_TOKEN }`,
+        },
+        next: {
+            revalidate: 36000
         }
     };
 
     const genre = searchParams.genre || 'fetchTrending';
     const response = await fetch(
         `https://api.themoviedb.org/3/${
-            genre === 'fetchTopRated' ? `/movie/top_rated` : `/trending/all/week` }?language=en-US&page=1`, options );
+            genre === 'fetchTopRated' ? `/movie/top_rated` : `/trending/all/week` }?language=en-US&page=1`,
+        options );
 
     const data = await response.json();
 
@@ -26,7 +30,7 @@ export default async function Home( { searchParams } ) {
 
     return (
         <div>
-            <Results results={results} />
+            <Results results={ results }/>
         </div>
     )
 }
