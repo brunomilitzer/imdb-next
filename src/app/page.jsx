@@ -1,6 +1,6 @@
 import Results from "@/components/results/Results";
 
-const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+export const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 
 export default async function Home( { searchParams } ) {
     const options = {
